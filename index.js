@@ -23,8 +23,8 @@ function createSeedingEmbed() {
         .setColor('#8B4513')
         .setTitle('🌱 Seeding')
         .setDescription('Sende eine Seeding Nachricht in den Seeding Kanal für den Jeweiligen Server')
-        .setThumbnail('https://i.imgur.com/YOUR_IMAGE_URL.png') // Optional: Thumbnail URL anpassen
-        .setImage('https://i.imgur.com/YOUR_BIG_IMAGE_URL.png') // Optional: Großes Bild URL anpassen
+        .setThumbnail('https://raw.githubusercontent.com/kilian558/Seed-Nachricht/main/assets/thumbnail.png')
+        .setImage('https://raw.githubusercontent.com/kilian558/Seed-Nachricht/main/assets/banner.png')
         .setFooter({ text: 'GBG - German Battleground' });
 
     return embed;
@@ -79,8 +79,8 @@ function createSeedingNotificationEmbed(serverNumber) {
             `Vielen Dank schon im Voraus – lasst uns die Front füllen! 💪\n\n` +
             `**Euer GBG-Team**`
         )
-        .setThumbnail('https://i.imgur.com/YOUR_IMAGE_URL.png') // Optional: Thumbnail URL anpassen
-        .setImage('https://i.imgur.com/YOUR_BIG_IMAGE_URL.png') // Optional: Großes Bild URL anpassen
+        .setThumbnail('https://raw.githubusercontent.com/kilian558/Seed-Nachricht/main/assets/thumbnail.png')
+        .setImage('https://raw.githubusercontent.com/kilian558/Seed-Nachricht/main/assets/banner.png')
         .setFooter({ text: 'GBG – Gemeinsam unschlagbar! 💥' })
         .setTimestamp();
 
