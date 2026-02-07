@@ -1,0 +1,17 @@
+{
+  "name": "gbg-seeding-bot",
+  "version": "1.0.0",
+  "description": "Discord Bot für GBG Server Seeding",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": ["discord", "bot", "seeding"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.4.1",
+    "node-cron": "^3.0.3"
+  }
+}
