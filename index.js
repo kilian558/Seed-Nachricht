@@ -23,8 +23,8 @@ function createSeedingEmbed() {
         .setColor('#8B4513')
         .setTitle('🌱 Seeding')
         .setDescription('Sende eine Seeding Nachricht in den Seeding Kanal für den Jeweiligen Server')
-        .setThumbnail('https://raw.githubusercontent.com/kilian558/Seed-Nachricht/main/assets/thumbnail.png')
-        .setImage('https://raw.githubusercontent.com/kilian558/Seed-Nachricht/main/assets/banner.png')
+        .setThumbnail('https://raw.githubusercontent.com/kilian558/Seed-Nachricht/main/assets/banner.png')
+        .setImage('https://raw.githubusercontent.com/kilian558/Seed-Nachricht/main/assets/thumbnail.png')
         .setFooter({ text: 'GBG - German Battleground' });
 
     return embed;
@@ -79,8 +79,8 @@ function createSeedingNotificationEmbed(serverNumber) {
             `Vielen Dank schon im Voraus – lasst uns die Front füllen! 💪\n\n` +
             `**Euer GBG-Team**`
         )
-        .setThumbnail('https://raw.githubusercontent.com/kilian558/Seed-Nachricht/main/assets/thumbnail.png')
-        .setImage('https://raw.githubusercontent.com/kilian558/Seed-Nachricht/main/assets/banner.png')
+        .setThumbnail('https://raw.githubusercontent.com/kilian558/Seed-Nachricht/main/assets/banner.png')
+        .setImage('https://raw.githubusercontent.com/kilian558/Seed-Nachricht/main/assets/thumbnail.png')
         .setFooter({ text: 'GBG – Gemeinsam unschlagbar! 💥' })
         .setTimestamp();
 
@@ -99,15 +99,21 @@ async function postSeedingMessage() {
         const embed = createSeedingEmbed();
         const buttons = createButtons();
 
-        // Versuche alte Nachricht zu löschen
-        if (seedingMessageId) {
-            try {
-                const oldMessage = await channel.messages.fetch(seedingMessageId);
-                await oldMessage.delete();
-                console.log('Alte Seeding-Nachricht gelöscht');
-            } catch (error) {
-                console.log('Alte Nachricht nicht gefunden oder bereits gelöscht');
+        // Finde und lösche alle alten Bot-Nachrichten im Channel
+        try {
+            const messages = await channel.messages.fetch({ limit: 10 });
+            const botMessages = messages.filter(msg => 
+                msg.author.id === client.user.id && 
+                msg.embeds.length > 0 &&
+                msg.embeds[0].title === '🌱 Seeding'
+            );
+            
+            for (const [id, msg] of botMessages) {
+                await msg.delete();
+                console.log(`Alte Seeding-Nachricht gelöscht: ${id}`);
             }
+        } catch (error) {
+            console.log('Fehler beim Löschen alter Nachrichten:', error.message);
         }
 
         // Poste neue Nachricht
