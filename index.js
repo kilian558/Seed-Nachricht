@@ -113,7 +113,7 @@ async function postSeedingMessage() {
         // Poste neue Nachricht
         const message = await channel.send({
             embeds: [embed],
-            components: [buttons]
+            components: buttons
         });
 
         seedingMessageId = message.id;
